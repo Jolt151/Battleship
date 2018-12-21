@@ -24,10 +24,16 @@ public class Player {
         }else{
             int id = other.getOwnBoard().shipAt(x, y);
             ArrayList<Ship> opponentsShips = other.getOwnBoard().getShips();
-            for (Ship s : opponentsShips){
+/*            for (Ship s : opponentsShips){
                 if (other.getOwnBoard().specificShipExistsAt(s, x, y)){
                     other.getOwnBoard().removeFromBoard(s);
                     int[][] debugtable = other.getOwnBoard().printBoard();
+                    return true;
+                }
+            }*/
+            for (int i = 0; i < opponentsShips.size() - 1; i++){
+                if (other.getOwnBoard().specificShipExistsAt(opponentsShips.get(i), x, y)){
+                    other.getOwnBoard().removeFromBoard(opponentsShips.get(i));
                     return true;
                 }
             }

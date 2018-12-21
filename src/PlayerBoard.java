@@ -65,7 +65,7 @@ public class PlayerBoard extends Board {
     }
 
 
-    public boolean destroyShip(int x, int y){
+/*    public boolean destroyShip(int x, int y){
         if (containsShipAt(x, y)){
             int id = shipAt(x, y);
 
@@ -162,7 +162,7 @@ public class PlayerBoard extends Board {
             return true;
         }
         else return false;
-    }
+    }*/
 
     public boolean specificShipExistsAt(Ship ship, int x, int y){
         int startingX = ship.getStartingX();
