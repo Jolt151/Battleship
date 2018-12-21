@@ -52,8 +52,9 @@ public class Game {
                 System.out.println("Player 2's new board: ");
                 print2D(player2.getOwnBoard().printBoard());
                 System.out.println();
-                System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
             } else System.out.println("Nothing was hit...");
+            System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
+
 
             hitX = random.nextInt(10);
             hitY = random.nextInt(10);
@@ -66,6 +67,8 @@ public class Game {
                 print2D(player1.getOwnBoard().printBoard());
                 System.out.println();
             } else System.out.println("Nothing was hit...");
+            System.out.println("Player 1 ships remaining: " + player1.getOwnBoard().getShips());
+
         }
 
     }
