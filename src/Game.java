@@ -8,6 +8,8 @@ public class Game {
         Player player2 = new Player();
 
         //add ships to player 1
+
+        //functions assume zero-index array, we can show this on the board or we can subtract one from every value
         System.out.println(player1.getOwnBoard().placeShip(new AircraftCarrier(3 - 1,5 - 1, Constants.HORIZONTAL)));
         player1.getOwnBoard().placeShip(new Battleship(8 - 1, 5 - 1, Constants.VERTICAL));
         player1.getOwnBoard().placeShip(new Cruiser(6 - 1, 10 - 1, Constants.HORIZONTAL));
@@ -55,6 +57,8 @@ public class Game {
                 System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
             } else System.out.println("Nothing was hit...");
 
+            System.out.println(player2.getOwnBoard().getShips());
+
             hitX = random.nextInt(10);
             hitY = random.nextInt(10);
             System.out.println("Player 2 attacking player 1 at (" + hitX + ", " + hitY + ")");
@@ -66,6 +70,8 @@ public class Game {
                 print2D(player1.getOwnBoard().printBoard());
                 System.out.println();
             } else System.out.println("Nothing was hit...");
+            System.out.println(player1.getOwnBoard().getShips());
+
         }
 
     }

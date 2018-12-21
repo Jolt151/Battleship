@@ -64,8 +64,8 @@ public class PlayerBoard extends Board {
         return theBoard[y][x];
     }
 
-
-    public boolean destroyShip(int x, int y){
+        //NOT NEEDED ANYMORE
+/*    public boolean destroyShip(int x, int y){
         if (containsShipAt(x, y)){
             int id = shipAt(x, y);
 
@@ -162,17 +162,17 @@ public class PlayerBoard extends Board {
             return true;
         }
         else return false;
-    }
+    }*/
 
     public boolean specificShipExistsAt(Ship ship, int x, int y){
         int startingX = ship.getStartingX();
         int startingY = ship.getStartingY();
         String orientation = ship.getOrientation();
         int size = ship.size();
-        if (orientation.equals(Constants.VERTICAL) && x == startingX && startingY + size >= y && startingY > y){
-            //if its vertical, x is the same, and startingY < y <= startingy+size, the point is contained
+        if (orientation.equals(Constants.HORIZONTAL) && y == startingY && startingX + size >= x && startingX > x){
+            //if its vertical, y is the same, and startingX < x <= startingX+size, the point is contained
             return true;
-        } else if (orientation.equals(Constants.HORIZONTAL) && y == startingY && startingX + size >= x && startingX > x){
+        } else if (orientation.equals(Constants.VERTICAL) && x == startingX && startingY + size >= y && startingY > y){
             return true;
         }
         else return false;
@@ -180,14 +180,15 @@ public class PlayerBoard extends Board {
     public void removeFromBoard(Ship ship){
         int startingX = ship.getStartingX();
         int startingY = ship.getStartingY();
+        int id = ship.id();
         String orientation = ship.getOrientation();
         int size = ship.size();
-        Ship toBeRemoved = null;
-        for (Ship s : ships){
-            if (s.getStartingX() == startingX && s.getStartingY() == startingY) toBeRemoved = s;
+
+        for (int i = 0; i < ships.size() - 1; i++){
+            if (ships.get(i).id() == id && ship.getStartingX() == startingX && ship.getStartingY() == startingY){
+                ships.remove(i);
+            }
         }
-        //shouldnt be null, as we're only calling this if it exists
-        ships.remove(toBeRemoved);
 
         if (orientation.equals(Constants.VERTICAL)){
             //our y axis is changing, x is staying the same
@@ -202,10 +203,7 @@ public class PlayerBoard extends Board {
             for (int i = 0; i < size + startingX; i++){
                 int prev = theBoard[startingY][startingX + i]; //debug
                 theBoard[startingY][startingX + i] = 0;
-                int after = theBoard[startingY][startingX + i];
-
-
-                int ignorethisfordebug = 0;
+                int after = theBoard[startingY][startingX + i]; //debug
             }
         }
     }
