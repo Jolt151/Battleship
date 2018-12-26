@@ -94,8 +94,5 @@ public class Game {
             System.out.println();
         }
     }
-    public void attack(Player other, int x, int y){
-
-    }
 
 }
