@@ -169,25 +169,30 @@ public class PlayerBoard extends Board {
         int startingY = ship.getStartingY();
         String orientation = ship.getOrientation();
         int size = ship.size();
-        if (orientation.equals(Constants.VERTICAL) && x == startingX && startingY + size >= y && startingY > y){
+        if (orientation.equals(Constants.VERTICAL) && x == startingX && startingY + size >= y && startingY >= y){
             //if its vertical, x is the same, and startingY < y <= startingy+size, the point is contained
             return true;
-        } else if (orientation.equals(Constants.HORIZONTAL) && y == startingY && startingX + size >= x && startingX > x){
+        }
+        //TODO: WRONG
+        else if (orientation.equals(Constants.HORIZONTAL) && y == startingY && startingX + size >= x && x > startingX){
             return true;
         }
         else return false;
     }
     public void removeFromBoard(Ship ship){
+        System.out.println("removing from board! previous: ");
+        print2D(theBoard);
+
         int startingX = ship.getStartingX();
         int startingY = ship.getStartingY();
         String orientation = ship.getOrientation();
         int size = ship.size();
-        Ship toBeRemoved = null;
-        for (Ship s : ships){
-            if (s.getStartingX() == startingX && s.getStartingY() == startingY) toBeRemoved = s;
+        for (int i = 0; i < ships.size(); i++){
+            if (ships.get(i).getStartingX() == startingX && ships.get(i).getStartingY() ==startingY){
+                ships.remove(i);
+                break;
+            }
         }
-        //shouldnt be null, as we're only calling this if it exists
-        ships.remove(toBeRemoved);
 
         if (orientation.equals(Constants.VERTICAL)){
             //our y axis is changing, x is staying the same
@@ -196,21 +201,26 @@ public class PlayerBoard extends Board {
             }
         }
 
-        //TODO: theBoard isnt saving changes for some reason
         else if (orientation.equals(Constants.HORIZONTAL)){
             //x axis is changing, y is staying the same
-            for (int i = 0; i < size + startingX; i++){
-                int prev = theBoard[startingY][startingX + i]; //debug
-                theBoard[startingY][startingX + i] = 0;
-                int after = theBoard[startingY][startingX + i];
-
+            for (int i = startingX; i < size + startingX; i++){
+                theBoard[startingY][i] = 0;
 
                 int ignorethisfordebug = 0;
             }
         }
+
     }
 
     public ArrayList<Ship> getShips() {
         return ships;
+    }
+    public static void print2D(int[][] arr){
+        for (int i = 0; i <arr.length; i++){
+            for (int j = 0; j < arr[0].length; j++){
+                System.out.print(arr[i][j]);
+            }
+            System.out.println();
+        }
     }
 }

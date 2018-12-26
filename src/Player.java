@@ -31,7 +31,7 @@ public class Player {
                     return true;
                 }
             }*/
-            for (int i = 0; i < opponentsShips.size() - 1; i++){
+            for (int i = 0; i < opponentsShips.size(); i++){
                 if (other.getOwnBoard().specificShipExistsAt(opponentsShips.get(i), x, y)){
                     other.getOwnBoard().removeFromBoard(opponentsShips.get(i));
                     return true;
