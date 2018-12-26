@@ -8,34 +8,45 @@ public class Game {
         Player player2 = new Player();
 
         //add ships to player 1
-        System.out.println(player1.getOwnBoard().placeShip(new AircraftCarrier(3 - 1,5 - 1, Constants.HORIZONTAL)));
-        player1.getOwnBoard().placeShip(new Battleship(8 - 1, 5 - 1, Constants.VERTICAL));
-        player1.getOwnBoard().placeShip(new Cruiser(6 - 1, 10 - 1, Constants.HORIZONTAL));
-        player1.getOwnBoard().placeShip(new Destroyer(7 - 1, 1 - 1, Constants.HORIZONTAL));
-        player1.getOwnBoard().placeShip(new Destroyer(2 - 1, 2 - 1, Constants.HORIZONTAL));
-        player1.getOwnBoard().placeShip(new Submarine(3-1, 9 - 1, Constants.VERTICAL));
-        player1.getOwnBoard().placeShip(new Submarine(9 - 1, 3 - 1, Constants.VERTICAL));
+        System.out.println(player1.getOwnBoard().placeShip(new AircraftCarrier(3,4, Constants.HORIZONTAL)));
+        player1.getOwnBoard().placeShip(new Battleship(7, 4, Constants.VERTICAL));
+        player1.getOwnBoard().placeShip(new Cruiser(5, 5, Constants.HORIZONTAL));
+        player1.getOwnBoard().placeShip(new Destroyer(6, 0, Constants.HORIZONTAL));
+        player1.getOwnBoard().placeShip(new Destroyer(1, 1, Constants.HORIZONTAL));
+        player1.getOwnBoard().placeShip(new Submarine(2, 8, Constants.VERTICAL));
+        player1.getOwnBoard().placeShip(new Submarine(8, 2, Constants.VERTICAL));
         System.out.println("Player 1's board: ");
         print2D(player1.getOwnBoard().printBoard());
         System.out.println("Player 1 ships remaining: " + player1.getOwnBoard().getShips());
 
 
         //add ships to player 2
-        player2.getOwnBoard().placeShip(new AircraftCarrier(1-1, 5-1, Constants.VERTICAL));
-        player2.getOwnBoard().placeShip(new Battleship(4 - 1, 1-1, Constants.HORIZONTAL));
-        player2.getOwnBoard().placeShip(new Cruiser(6-1, 7-1, Constants.HORIZONTAL));
-        player2.getOwnBoard().placeShip(new Destroyer(10-1, 3 -1, Constants.VERTICAL));
-        player2.getOwnBoard().placeShip(new Destroyer(10-1, 5-1, Constants.VERTICAL));
-        player2.getOwnBoard().placeShip(new Submarine(1-1, 1-1, Constants.VERTICAL));
-        player2.getOwnBoard().placeShip(new Submarine(2-1, 2-1, Constants.VERTICAL));
+        player2.getOwnBoard().placeShip(new AircraftCarrier(0, 4, Constants.VERTICAL));
+        player2.getOwnBoard().placeShip(new Battleship(3, 0, Constants.HORIZONTAL));
+        player2.getOwnBoard().placeShip(new Cruiser(5, 6, Constants.HORIZONTAL));
+        player2.getOwnBoard().placeShip(new Destroyer(9, 2, Constants.VERTICAL));
+        player2.getOwnBoard().placeShip(new Destroyer(9, 4, Constants.VERTICAL));
+        player2.getOwnBoard().placeShip(new Submarine(0, 0, Constants.VERTICAL));
+        player2.getOwnBoard().placeShip(new Submarine(1, 1, Constants.VERTICAL));
         System.out.println("Player 2's board: ");
         print2D(player2.getOwnBoard().printBoard());
         System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
 
 
-        //thetable doesnt contain our changes after we attack? TODO
-        System.out.println("Attacking player 2 at 5,0");
-        player1.attack(player2, 5, 0);
+        System.out.println("Attacking player 2 at 0,4");
+        player1.attack(player2, 0,4);
+        System.out.println("Player 2's board: ");
+        print2D(player2.getOwnBoard().printBoard());
+        System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
+
+        System.out.println("Attacking player 2 at 0,0");
+        player1.attack(player2, 0,0);
+        System.out.println("Player 2's board: ");
+        print2D(player2.getOwnBoard().printBoard());
+        System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
+
+        System.out.println("Attacking player 2 at 1,1");
+        player1.attack(player2, 1,1);
         System.out.println("Player 2's board: ");
         print2D(player2.getOwnBoard().printBoard());
         System.out.println("Player 2 ships remaining: " + player2.getOwnBoard().getShips());
@@ -71,9 +82,12 @@ public class Game {
 
         }
 
+        if (player1.getOwnBoard().getShips().isEmpty()) System.out.println("Player 2 wins!");
+        else if (player2.getOwnBoard().getShips().isEmpty()) System.out.println("Player 1 wins!");
+
     }
     public static void print2D(int[][] arr){
-        for (int i = arr.length - 1; i >= 0; i--){
+        for (int i = 0; i <arr.length; i++){
             for (int j = 0; j < arr[0].length; j++){
                 System.out.print(arr[i][j]);
             }
@@ -83,4 +97,5 @@ public class Game {
     public void attack(Player other, int x, int y){
 
     }
+
 }
