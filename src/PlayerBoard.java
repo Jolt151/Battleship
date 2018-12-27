@@ -25,8 +25,8 @@ public class PlayerBoard extends Board {
         String orientation = ship.getOrientation();
 
         //if the ship doesn't fit, return false
-        if (orientation.equals(Constants.VERTICAL) && (y + shipSize) >= size) return false;
-        if (orientation.equals(Constants.HORIZONTAL) && (x + shipSize) >= size) return false;
+        if (orientation.equals(Constants.VERTICAL) && (y + shipSize) > size) return false;
+        if (orientation.equals(Constants.HORIZONTAL) && (x + shipSize) > size) return false;
 
         //check to see if the ship will go through any other ship before we place it
         for (int i = 0; i < shipSize; i++) {
