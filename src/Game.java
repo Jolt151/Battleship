@@ -7,9 +7,13 @@ public class Game {
         Player player1 = new Player();
         Player player2 = new Player();
 
+        //for vertical ships, starting coordinate is the top of the ship
+        //for horizontal ships, starting coordinate is the left of the ship
+        //origin is the top left corner
+
         //add ships to player 1
         System.out.println(player1.getOwnBoard().placeShip(new AircraftCarrier(3,4, Constants.HORIZONTAL)));
-        player1.getOwnBoard().placeShip(new Battleship(7, 4, Constants.VERTICAL));
+        System.out.println(player1.getOwnBoard().placeShip(new Battleship(7, 6, Constants.VERTICAL)));
         player1.getOwnBoard().placeShip(new Cruiser(5, 5, Constants.HORIZONTAL));
         player1.getOwnBoard().placeShip(new Destroyer(6, 0, Constants.HORIZONTAL));
         player1.getOwnBoard().placeShip(new Destroyer(1, 1, Constants.HORIZONTAL));
